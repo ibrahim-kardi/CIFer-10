@@ -1,0 +1,29 @@
+"""
+Author: Ibrahim
+
+Desc: configuration file for kaggle cifer-10
+"""
+import os
+
+train_sample_num = 50000
+test_sample_num = 300000
+
+img_size = 32
+img_channel = 3
+img_shape = (img_size, img_size, img_channel)
+
+def root_path():
+	return os.path.dirname(__file__)
+
+def checkpoint_path():
+	return os.path.join(root_path(),"checkpoint")
+
+def dataset_path():
+	return os.path.join(root_path(),"dataset")
+
+def src_path():
+	return os.path.join(root_path(),"src")
+
+def submission_path():
+	return os.path.join(root_path(),"submission")
+
