@@ -1,5 +1,5 @@
 """
-Author: Ibrahim
+Author: Ibrahim, Rayhan, Toriq
 
 Desc: configuration file for kaggle cifer-10
 """
@@ -11,6 +11,9 @@ test_sample_num = 300000
 img_size = 32
 img_channel = 3
 img_shape = (img_size, img_size, img_channel)
+lr = 0.001
+batch_size = 200
+nb_epochs = 60
 
 def root_path():
 	return os.path.dirname(__file__)
@@ -26,4 +29,7 @@ def src_path():
 
 def submission_path():
 	return os.path.join(root_path(),"submission")
+
+def output_path():
+	return os.path.join(root_path(),"output")
 
