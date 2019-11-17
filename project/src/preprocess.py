@@ -1,5 +1,5 @@
 """
-Author: Ibrahim
+Author: Ibrahim, rayhan
 Descrption: preprocess CIfer-10 datasets
 
 """
