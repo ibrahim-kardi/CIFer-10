@@ -20,3 +20,16 @@ result = []
 for part in range(0, 6):
     x_test = preprocess.get_test_data_by_part(part)
 
+    #predicting results
+    print("predicting result")
+    predictions = model.predict(x_test,
+                                batch_size = config.batch_size,
+                                verbose = 2)
+    
+
+    label_pred = np.argmax(predictions, axis = 1)
+    print(label_pred)
+    
+    result += label_pred.tolist()
+
+
