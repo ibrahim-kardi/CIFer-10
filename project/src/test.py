@@ -33,3 +33,14 @@ for part in range(0, 6):
     result += label_pred.tolist()
 
 
+#submitting result into csv file
+result = [label[i]for i in result ]
+#print(result)
+
+submit_df = pd.DataFrame({"id": range(1, config.test_sample_num + 1),
+                    "label":result})
+submit_df.to_csv(os.path.join(config.submission_path(), "baseline_sub.csv"),
+                header=True,
+                index=False)
+
+print("saved successfull")
