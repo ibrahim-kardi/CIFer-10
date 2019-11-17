@@ -52,8 +52,53 @@ def load_train_data():
 		x_train[i]=img
 	return x_train, y_labels
 
+#loading test data
+def load_test_data():
+	test_data_dir = os.path.join(config.dataset_path(), "test")
+	#print(os.listdir(test_data_dir))
+	test_images= sorted(os.listdir(test_data_dir),key=lambda x: int(x.split(".")[0]))
+	
+	#print(test_images)
+	test_images= [os.path.join(test_data_dir,img_path)
+		for img_path in test_images]
+	#print(test_images)
+	
+	
+	start = 0
+	nb_images = 50000
+	for part in range(0, 6):
+		if not (part == 0): start += 50000
+		end = start + nb_images
+
+		#print(start, " ", end)
+
+		x_test = np.ndarray((nb_images,
+							config.img_size,
+							config.img_size,
+							config.img_channel),dtype=np.float32)
+
+		print("Loading test images from...", start, " to ", end)
+
+		#loading images from absulate directory using opencv
+
+		for i, img_dir in enumerate(test_images[start:end]):
+			img = cv2.imread(img_dir)
+			img = normalization(img)
+			#print(img)
+			x_test[i]= img
+
+		np.save(os.path.join(config.output_path(), "x_test" + str (part)), x_test)
+		del x_test
+	
+	
+#loading test image from numpy arry
+
+def get_test_data_by_part(part):
+	print("Loadng test_image_par", part, "from numpy arry")
+	return np.load(os.path.join(config.output_path(), "x_test" + str (part) + ".npy"))
+
+
 
 if __name__ == "__main__":
-	x,y = load_train_data()
-	print(x.shape)
-	print(y.shape)
+	load_test_data()
+	
